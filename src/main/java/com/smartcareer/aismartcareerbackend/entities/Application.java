@@ -22,9 +22,9 @@ public class Application {
     @Column(updatable = false)
     private LocalDateTime applicationDate;
 
+    @Enumerated(EnumType.STRING)
     @Builder.Default
-    private String status = "PENDING"; // "PENDING", "ACCEPTED", "REJECTED"
-
+    private ApplicationStatus status = ApplicationStatus.PENDING;
     @Column(columnDefinition = "TEXT")
     private String message;
 

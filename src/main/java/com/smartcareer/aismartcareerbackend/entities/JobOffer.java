@@ -30,14 +30,17 @@ public class JobOffer {
 
     private String location;
 
-    private String jobType; // "CDI", "CDD", "Stage", "Freelance"...
+    @Enumerated(EnumType.STRING)
+    private JobType jobType;
 
-    private String experienceLevel; // "Junior", "Confirmé", "Senior"...
+    @Enumerated(EnumType.STRING)
+    private ExperienceLevel experienceLevel;
 
     private LocalDate deadline;
 
+    @Enumerated(EnumType.STRING)
     @Builder.Default
-    private String status = "OPEN"; // "OPEN", "CLOSED"
+    private JobOfferStatus status = JobOfferStatus.OPEN;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id", nullable = false)
