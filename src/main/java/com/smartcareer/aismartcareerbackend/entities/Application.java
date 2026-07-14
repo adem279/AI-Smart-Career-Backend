@@ -41,6 +41,10 @@ public class Application {
     @OneToOne(mappedBy = "application", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Interview interview;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "resume_id")
+    @JsonIgnore
+    private Resume resume;
 
     @PrePersist
     protected void onCreate() {

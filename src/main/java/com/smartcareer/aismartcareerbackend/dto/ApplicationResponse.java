@@ -16,4 +16,8 @@ public class ApplicationResponse {
 
     private Long jobOfferId;
     private String jobOfferTitle;
+
+    private Long resumeId;
+    private String resumeFileName;
+    private String resumeFilePath;
 }

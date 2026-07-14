@@ -7,6 +7,7 @@ import com.smartcareer.aismartcareerbackend.mapper.ApplicationMapper;
 import com.smartcareer.aismartcareerbackend.repository.ApplicationRepository;
 import com.smartcareer.aismartcareerbackend.repository.CandidateRepository;
 import com.smartcareer.aismartcareerbackend.repository.JobOfferRepository;
+import com.smartcareer.aismartcareerbackend.repository.ResumeRepository;
 import com.smartcareer.aismartcareerbackend.security.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class ApplicationService {
     private final ApplicationRepository applicationRepository;
     private final CandidateRepository candidateRepository;
     private final JobOfferRepository jobOfferRepository;
+    private final ResumeRepository resumeRepository;
     private final NotificationService notificationService;
 
     public ApplicationResponse apply(ApplicationRequest request) {
@@ -39,13 +41,23 @@ public class ApplicationService {
             throw new RuntimeException("Cette offre n'accepte plus de candidatures");
         }
 
-        Application application = Application.builder()
+        Application.ApplicationBuilder applicationBuilder = Application.builder()
                 .candidate(candidate)
                 .jobOffer(jobOffer)
-                .message(request.getMessage())
-                .build();
-        // status reste PENDING par défaut
+                .message(request.getMessage());
 
+        if (request.getResumeId() != null) {
+            Resume resume = resumeRepository.findById(request.getResumeId())
+                    .orElseThrow(() -> new RuntimeException("CV introuvable"));
+
+            if (!resume.getCandidate().getId().equals(candidateId)) {
+                throw new RuntimeException("Ce CV ne vous appartient pas");
+            }
+
+            applicationBuilder.resume(resume);
+        }
+
+        Application application = applicationBuilder.build();
         applicationRepository.save(application);
         return ApplicationMapper.toResponse(application);
     }

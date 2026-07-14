@@ -6,7 +6,7 @@ import com.smartcareer.aismartcareerbackend.entities.Application;
 public class ApplicationMapper {
 
     public static ApplicationResponse toResponse(Application application) {
-        return ApplicationResponse.builder()
+        ApplicationResponse.ApplicationResponseBuilder builder = ApplicationResponse.builder()
                 .id(application.getId())
                 .applicationDate(application.getApplicationDate())
                 .status(application.getStatus().name())
@@ -14,7 +14,14 @@ public class ApplicationMapper {
                 .candidateId(application.getCandidate().getId())
                 .candidateName(application.getCandidate().getFirstName() + " " + application.getCandidate().getLastName())
                 .jobOfferId(application.getJobOffer().getId())
-                .jobOfferTitle(application.getJobOffer().getTitle())
-                .build();
+                .jobOfferTitle(application.getJobOffer().getTitle());
+
+        if (application.getResume() != null) {
+            builder.resumeId(application.getResume().getId())
+                    .resumeFileName(application.getResume().getFileName())
+                    .resumeFilePath(application.getResume().getFilePath());
+        }
+
+        return builder.build();
     }
 }

@@ -8,4 +8,5 @@ public class ApplicationRequest {
 
     @NotNull private Long jobOfferId;
     private String message;
+    private Long resumeId;
 }
