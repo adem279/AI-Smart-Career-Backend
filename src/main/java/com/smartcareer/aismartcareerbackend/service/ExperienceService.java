@@ -38,6 +38,12 @@ public class ExperienceService {
         experienceRepository.save(experience);
         return ExperienceMapper.toResponse(experience);
     }
+    public List<ExperienceResponse> getByCandidateId(Long candidateId) {
+        return experienceRepository.findByCandidateId(candidateId)
+                .stream()
+                .map(ExperienceMapper::toResponse)
+                .toList();
+    }
 
     public List<ExperienceResponse> getMyExperiences() {
         Long candidateId = SecurityUtils.getCurrentUserId();

@@ -45,7 +45,12 @@ public class CandidateSkillService {
         candidateSkillRepository.save(candidateSkill);
         return CandidateSkillMapper.toResponse(candidateSkill);
     }
-
+    public List<CandidateSkillResponse> getByCandidateId(Long candidateId) {
+        return candidateSkillRepository.findByCandidateId(candidateId)
+                .stream()
+                .map(CandidateSkillMapper::toResponse)
+                .toList();
+    }
     public List<CandidateSkillResponse> getMySkills() {
         Long candidateId = SecurityUtils.getCurrentUserId();
         return candidateSkillRepository.findByCandidateId(candidateId)

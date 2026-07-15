@@ -45,6 +45,12 @@ public class PortfolioService {
                 .map(PortfolioMapper::toResponse)
                 .toList();
     }
+    public List<PortfolioResponse> getByCandidateId(Long candidateId) {
+        return portfolioRepository.findByCandidateId(candidateId)
+                .stream()
+                .map(PortfolioMapper::toResponse)
+                .toList();
+    }
 
     public PortfolioResponse update(Long id, PortfolioRequest request) {
         Long candidateId = SecurityUtils.getCurrentUserId();

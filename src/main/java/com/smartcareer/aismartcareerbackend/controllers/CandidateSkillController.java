@@ -25,7 +25,10 @@ public class CandidateSkillController {
     public ResponseEntity<List<CandidateSkillResponse>> getMySkills() {
         return ResponseEntity.ok(candidateSkillService.getMySkills());
     }
-
+    @GetMapping("/candidate/{candidateId}")
+    public ResponseEntity<List<CandidateSkillResponse>> getByCandidateId(@PathVariable Long candidateId) {
+        return ResponseEntity.ok(candidateSkillService.getByCandidateId(candidateId));
+    }
     @PutMapping("/{id}")
     public ResponseEntity<CandidateSkillResponse> updateLevel(@PathVariable Long id, @Valid @RequestBody CandidateSkillRequest request) {
         return ResponseEntity.ok(candidateSkillService.updateLevel(id, request));

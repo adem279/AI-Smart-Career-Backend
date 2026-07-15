@@ -25,6 +25,10 @@ public class ExperienceController {
     public ResponseEntity<List<ExperienceResponse>> getMyExperiences() {
         return ResponseEntity.ok(experienceService.getMyExperiences());
     }
+    @GetMapping("/candidate/{candidateId}")
+    public ResponseEntity<List<ExperienceResponse>> getByCandidateId(@PathVariable Long candidateId) {
+        return ResponseEntity.ok(experienceService.getByCandidateId(candidateId));
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<ExperienceResponse> update(@PathVariable Long id, @Valid @RequestBody ExperienceRequest request) {

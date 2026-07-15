@@ -77,4 +77,10 @@ public class EducationService {
 
         educationRepository.deleteById(id);
     }
+    public List<EducationResponse> getByCandidateId(Long candidateId) {
+        return educationRepository.findByCandidateId(candidateId)
+                .stream()
+                .map(EducationMapper::toResponse)
+                .toList();
+    }
 }

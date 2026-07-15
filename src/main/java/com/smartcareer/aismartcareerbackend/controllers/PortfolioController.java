@@ -26,6 +26,10 @@ public class PortfolioController {
     public ResponseEntity<List<PortfolioResponse>> getMyPortfolios() {
         return ResponseEntity.ok(portfolioService.getMyPortfolios());
     }
+    @GetMapping("/candidate/{candidateId}")
+    public ResponseEntity<List<PortfolioResponse>> getByCandidateId(@PathVariable Long candidateId) {
+        return ResponseEntity.ok(portfolioService.getByCandidateId(candidateId));
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<PortfolioResponse> update(@PathVariable Long id, @Valid @RequestBody PortfolioRequest request) {
