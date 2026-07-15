@@ -32,6 +32,8 @@ public class Interview {
 
     private String result; // "En attente", "Réussi", "Échoué"
 
+    private String meetingLink;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "application_id", nullable = false, unique = true)
     @JsonIgnore

@@ -37,6 +37,7 @@ public class InterviewService {
                 .time(request.getTime())
                 .location(request.getLocation())
                 .type(request.getType())
+                .meetingLink(request.getMeetingLink())
                 .application(application)
                 .build();
 

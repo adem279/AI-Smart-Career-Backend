@@ -13,6 +13,7 @@ public class InterviewMapper {
                 .location(interview.getLocation())
                 .type(interview.getType())
                 .result(interview.getResult())
+                .meetingLink(interview.getMeetingLink())
                 .applicationId(interview.getApplication().getId())
                 .build();
     }

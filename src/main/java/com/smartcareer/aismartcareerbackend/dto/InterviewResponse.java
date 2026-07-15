@@ -14,4 +14,5 @@ public class InterviewResponse {
     private String type;
     private String result;
     private Long applicationId;
+    private String meetingLink;
 }

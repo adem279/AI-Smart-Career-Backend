@@ -12,4 +12,5 @@ public class InterviewRequest {
     @NotNull private LocalTime time;
     private String location;
     private String type;
+    private String meetingLink;
 }
