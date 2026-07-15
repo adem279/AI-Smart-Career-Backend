@@ -31,4 +31,4 @@ public class ResumeController {
         resumeService.delete(id);
         return ResponseEntity.noContent().build();
     }
-}
+    }
