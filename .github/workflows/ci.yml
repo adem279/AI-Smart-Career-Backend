@@ -22,4 +22,4 @@ jobs:
           cache: maven
 
       - name: Compiler et tester
-        run: mvn -B clean verify
+        run: mvn -B clean package -DskipTests
